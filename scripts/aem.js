@@ -588,7 +588,8 @@ async function loadBlock(block) {
  */
 function decorateBlock(block) {
   const shortBlockName = block.classList[0];
-  if (shortBlockName && !block.dataset.blockStatus) {
+  // Skip section-metadata as it's configuration, not a loadable block
+  if (shortBlockName && shortBlockName !== 'section-metadata' && !block.dataset.blockStatus) {
     block.classList.add('block');
     block.dataset.blockName = shortBlockName;
     block.dataset.blockStatus = 'initialized';

@@ -142,6 +142,10 @@
     ]
   },
   {
+    "id": "api-health",
+    "fields": []
+  },
+  {
     "id": "card",
     "fields": [
       {
