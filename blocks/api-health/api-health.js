@@ -84,7 +84,6 @@ async function probeApi(api) {
       };
     }
 
-
     if (api.validate && !api.validate(data)) {
       return {
         id: api.id,
