@@ -1,0 +1,69 @@
+.text {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.text .text-content {
+  line-height: 1.6;
+  color: var(--text-color, #333);
+}
+
+.text .text-content h1,
+.text .text-content h2,
+.text .text-content h3,
+.text .text-content h4,
+.text .text-content h5,
+.text .text-content h6 {
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  line-height: 1.2;
+}
+
+.text .text-content p {
+  margin-bottom: 1em;
+}
+
+.text .text-content ul,
+.text .text-content ol {
+  margin-bottom: 1em;
+  padding-left: 2em;
+}
+
+.text .text-content li {
+  margin-bottom: 0.5em;
+}
+
+.text .text-content a {
+  color: var(--link-color, #06c);
+  text-decoration: none;
+}
+
+.text .text-content a:hover {
+  text-decoration: underline;
+}
+
+/* Remove bullets from unordered lists (keep numbers for ordered lists) */
+.text .text-content ul {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.text .text-content ul li::marker {
+  content: '';
+}
+
+/* Optional: tighten nested indentation */
+.text .text-content ul ul,
+.text .text-content ul ol {
+  padding-left: 1.25em;
+}
+
+/* Responsive */
+@media (width <= 768px) {
+  .text {
+    padding: 1rem;
+  }
+}

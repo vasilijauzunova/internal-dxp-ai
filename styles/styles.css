@@ -1,0 +1,201 @@
+/* ==========================================================================
+   Design Tokens & Global Styles — Service Status Dashboard
+   ========================================================================== */
+
+:root {
+  /* Brand */
+  --color-brand-primary: #1473e6;
+  --color-brand-secondary: #0d66d0;
+
+  /* Severity palette */
+  --color-ok: #2d9d78;
+  --color-warn: #e68619;
+  --color-critical: #e34850;
+  --color-unknown: #747474;
+
+  /* Neutrals */
+  --color-bg: #f5f5f5;
+  --color-surface: #fff;
+  --color-border: #e0e0e0;
+  --color-text-primary: #2c2c2c;
+  --color-text-secondary: #505050;
+  --color-text-muted: #767676;
+
+  /* Typography */
+  --font-family-base: 'Adobe Clean', 'Source Sans Pro', system-ui, -apple-system, sans-serif;
+  --font-size-base: 16px;
+  --font-size-sm: 0.875rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  --line-height-base: 1.5;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgb(0 0 0 / 10%);
+  --shadow-md: 0 4px 12px rgb(0 0 0 / 12%);
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+
+  /* Layout */
+  --max-width: 1280px;
+  --header-height: 64px;
+}
+
+/* Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: var(--font-size-base);
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family-base);
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-base);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Links */
+a {
+  color: var(--color-brand-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Main content wrapper injected by EDS */
+main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-md);
+}
+
+/* Section spacing */
+main > div {
+  margin-bottom: var(--space-xl);
+}
+
+/* Utility: visually hidden */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+}
+
+/* Skeleton loading */
+.skeleton {
+  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s infinite;
+  border-radius: var(--radius-sm);
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Error state */
+.block-error {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background: #fff4f4;
+  border: 1px solid var(--color-critical);
+  border-radius: var(--radius-md);
+  color: var(--color-critical);
+  font-size: var(--font-size-sm);
+}
+
+.block-error::before {
+  content: '⚠';
+  font-size: 1.2em;
+}
+
+/* Severity pills */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: 999px;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  line-height: 1;
+}
+
+.pill--ok {
+  background: #e8f5f0;
+  color: var(--color-ok);
+}
+
+.pill--warn {
+  background: #fdf3e3;
+  color: var(--color-warn);
+}
+
+.pill--critical {
+  background: #fdecea;
+  color: var(--color-critical);
+}
+
+.pill--unknown {
+  background: #f0f0f0;
+  color: var(--color-unknown);
+}
+
+/* Toast */
+.dashboard-toast {
+  position: fixed;
+  bottom: var(--space-lg);
+  right: var(--space-lg);
+  background: var(--color-text-primary);
+  color: #fff;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity var(--transition-base), transform var(--transition-base);
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.dashboard-toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}

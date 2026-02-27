@@ -1,0 +1,70 @@
+.columns > div {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.columns img {
+  width: 100%;
+  max-width: 200px;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgb(0 0 0 / 8%);
+  transition: all 0.3s ease;
+}
+
+.columns img:hover {
+  box-shadow: 0 6px 24px rgb(0 0 0 / 12%);
+}
+
+.columns > div > div {
+  order: 1;
+}
+
+.columns > div > .columns-img-col {
+  order: 0;
+  position: relative;
+  padding-left: 20px;
+}
+
+.columns > div > .columns-img-col::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, var(--primary-color) 0%, var(--accent-color) 100%);
+  border-radius: 2px;
+}
+
+.columns > div > .columns-img-col img {
+  display: block;
+}
+
+.columns h2,
+.columns h3 {
+  color: var(--dark-color);
+  margin-bottom: 16px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.columns p {
+  color: #555;
+  line-height: 1.8;
+  font-size: 1rem;
+  margin-bottom: 16px;
+}
+
+@media (width >= 900px) {
+  .columns > div {
+    align-items: center;
+    flex-direction: unset;
+    gap: 48px;
+  }
+
+  .columns > div > div {
+    flex: 1;
+    order: unset;
+  }
+}

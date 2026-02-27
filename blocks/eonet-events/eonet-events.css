@@ -1,0 +1,124 @@
+.eonet-events {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-lg);
+}
+
+.eonet-events .eonet-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.eonet-events .eonet-title {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+}
+
+.eonet-events .eonet-count {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  background: var(--color-bg);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+}
+
+.eonet-events .eonet-skeleton {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--space-md);
+}
+
+.eonet-events .eonet-category-section {
+  margin-bottom: var(--space-xl);
+}
+
+.eonet-events .eonet-category-heading {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  margin-bottom: var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: var(--space-sm);
+}
+
+.eonet-events .eonet-category-count {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
+
+.eonet-events .eonet-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--space-md);
+}
+
+.eonet-events .eonet-card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  transition: box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+
+.eonet-events .eonet-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.eonet-events .eonet-card-title {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-text-primary);
+}
+
+.eonet-events .eonet-card-meta {
+  display: flex;
+  gap: var(--space-md);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  flex-wrap: wrap;
+}
+
+.eonet-events .eonet-card-coords {
+  font-size: var(--font-size-sm);
+}
+
+.eonet-events .eonet-card-coords summary {
+  cursor: pointer;
+  color: var(--color-text-secondary);
+}
+
+.eonet-events .eonet-card-coords code {
+  display: block;
+  margin-top: var(--space-xs);
+  background: var(--color-surface);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  font-family: monospace;
+}
+
+.eonet-events .eonet-card-link {
+  margin-top: auto;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-brand-primary);
+}
+
+.eonet-events .stale-warning {
+  color: var(--color-warn);
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--space-md);
+}
+

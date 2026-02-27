@@ -1,0 +1,18 @@
+/.idea/
+
+# Environment secrets — NEVER commit
+.env
+.env.local
+.env.*.local
+.dev.vars
+
+.hlx/*
+coverage/*
+logs/*
+node_modules/*
+
+helix-importer-ui
+.DS_Store
+*.bak
+.idea
+

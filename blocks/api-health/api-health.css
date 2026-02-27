@@ -1,0 +1,357 @@
+/* ==========================================================================
+   api-health block — Service Status Dashboard
+   Matches reference design: stat cards · filter pills · service card grid
+   ========================================================================== */
+
+/* ── Scoping wrapper ──────────────────────────────────────────────────────── */
+.api-health {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl) var(--space-xl);
+  font-family: var(--font-family-base), sans-serif;
+  color: var(--color-text-primary);
+}
+
+/* ── Page header ──────────────────────────────────────────────────────────── */
+.api-health .ah-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+  flex-wrap: wrap;
+}
+
+.api-health .ah-header__title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--color-text-primary);
+  line-height: 1.15;
+  margin-bottom: 4px;
+}
+
+.api-health .ah-header__subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+/* Refresh button */
+.api-health .ah-refresh-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-brand-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 0.55rem var(--space-md);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.api-health .ah-refresh-btn:hover  { background: var(--color-brand-secondary); }
+.api-health .ah-refresh-btn:active { transform: scale(0.97); }
+
+.api-health .ah-refresh-btn svg { flex-shrink: 0; }
+
+/* ── Stat cards row ───────────────────────────────────────────────────────── */
+.api-health .ah-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+
+.api-health .ah-stat__icon {
+    display: flex;
+    flex-shrink: 0;
+}
+
+.api-health .ah-stat__body {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.api-health .ah-stat__count {
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.api-health .ah-stat__label {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+}
+
+.api-health .ah-stat {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-lg) var(--space-lg);
+  border-radius: var(--radius-lg);
+  border: 1px solid transparent;
+}
+
+.api-health .ah-stat--ok .ah-stat__icon   { color: var(--color-ok); }
+.api-health .ah-stat--ok .ah-stat__count  { color: var(--color-ok); }
+.api-health .ah-stat--ok .ah-stat__label  { color: var(--color-ok); }
+
+/* Degraded – amber */
+.api-health .ah-stat--warn {
+  background: #fffbf0;
+  border-color: #f5d89a;
+}
+
+.api-health .ah-stat--warn .ah-stat__icon  { color: var(--color-warn); }
+.api-health .ah-stat--warn .ah-stat__count { color: var(--color-warn); }
+.api-health .ah-stat--warn .ah-stat__label { color: var(--color-warn); }
+
+/* Down – red */
+.api-health .ah-stat--down {
+  background: #fff5f5;
+  border-color: #f5bcbc;
+}
+
+.api-health .ah-stat--down .ah-stat__icon  { color: var(--color-critical); }
+.api-health .ah-stat--down .ah-stat__count { color: var(--color-critical); }
+.api-health .ah-stat--down .ah-stat__label { color: var(--color-critical); }
+
+
+/* ── Filter bar ───────────────────────────────────────────────────────────── */
+.api-health .ah-filters {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-lg);
+}
+
+.api-health .ah-filters__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  margin-right: 4px;
+}
+
+.api-health .ah-filter {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 5px 14px;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.api-health .ah-filter:hover {
+  background: #f4f4f4;
+}
+
+.api-health .ah-filter--active {
+  background: var(--color-brand-primary);
+  border-color: var(--color-brand-primary);
+  color: #fff;
+  font-weight: 600;
+}
+
+.api-health .ah-filter--active:hover {
+  background: var(--color-brand-secondary);
+  border-color: var(--color-brand-secondary);
+}
+
+/* ── Service cards grid ───────────────────────────────────────────────────── */
+.api-health .ah-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: var(--space-md);
+}
+
+/* ── Single service card ──────────────────────────────────────────────────── */
+.api-health .ah-card {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Loading skeleton pulse */
+.api-health .ah-card--loading {
+  border-left-color: var(--color-border);
+  opacity: 0.7;
+}
+
+/* Operational – green left border + faint green bg */
+.api-health .ah-card--ok {
+  border-left-color: var(--color-ok);
+  background: #fafffe;
+}
+
+/* Degraded – amber left border + faint amber bg */
+.api-health .ah-card--warn {
+  border-left-color: var(--color-warn);
+  background: #fffdf5;
+}
+
+/* Down – red left border + faint red bg */
+.api-health .ah-card--down {
+  border-left-color: var(--color-critical);
+  background: #fffafa;
+}
+
+/* Card head: icon+name left, dot right */
+.api-health .ah-card__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  margin-bottom: 4px;
+}
+
+.api-health .ah-card__title-group {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+}
+
+.api-health .ah-card__type-icon {
+  display: flex;
+  align-items: center;
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.api-health .ah-card__name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.3;
+}
+
+.api-health .ah-card__type-badge {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* Status dot (top-right) */
+.api-health .ah-card__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 4px;
+  background: var(--color-border);
+  transition: background var(--transition-base);
+}
+
+.api-health .ah-card--ok   .ah-card__dot { background: var(--color-ok); }
+.api-health .ah-card--warn .ah-card__dot { background: var(--color-warn); }
+.api-health .ah-card--down .ah-card__dot { background: var(--color-critical); }
+
+/* Status label */
+.api-health .ah-card__status-label {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-xs);
+}
+
+.api-health .ah-card--ok   .ah-card__status-label { color: var(--color-ok); }
+.api-health .ah-card--warn .ah-card__status-label { color: var(--color-warn); }
+.api-health .ah-card--down .ah-card__status-label { color: var(--color-critical); }
+
+/* Metrics list */
+.api-health .ah-card__metrics {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+}
+
+.api-health .ah-metric {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 6px;
+}
+
+.api-health .ah-metric:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.api-health .ah-metric__key {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--color-text-secondary);
+}
+
+.api-health .ah-metric__val {
+  font-weight: 700;
+  color: var(--color-text-primary);
+  text-align: right;
+}
+
+/* URL footer */
+.api-health .ah-card__url {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  overflow-wrap: anywhere;
+  word-break: break-all;
+  margin-top: auto;
+  padding-top: var(--space-sm);
+  border-top: 1px solid #f0f0f0;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+@media (width <= 900px) {
+  .api-health .ah-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (width <= 600px) {
+  .api-health {
+    padding: var(--space-md);
+  }
+
+  .api-health .ah-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .api-health .ah-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+

@@ -1,0 +1,123 @@
+.firms-fires {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-lg);
+  overflow: hidden;
+}
+
+.firms-fires .fire-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-md);
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.firms-fires .fire-title {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+}
+
+.firms-fires .fire-count {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  background: var(--color-bg);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+}
+
+.firms-fires .fire-table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.firms-fires .fire-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-sm);
+}
+
+.firms-fires .fire-table thead th {
+  text-align: left;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-bg);
+  color: var(--color-text-secondary);
+  font-weight: 600;
+  border-bottom: 2px solid var(--color-border);
+  white-space: nowrap;
+}
+
+.firms-fires .fire-table tbody tr {
+  border-bottom: 1px solid var(--color-border);
+  transition: background var(--transition-fast);
+}
+
+.firms-fires .fire-table tbody tr:hover {
+  background: var(--color-bg);
+}
+
+.firms-fires .fire-table td {
+  padding: var(--space-sm) var(--space-md);
+  vertical-align: middle;
+}
+
+/* Row severity left-border accent */
+.firms-fires .fire-row--ok {
+  border-left: 3px solid var(--color-ok);
+}
+
+.firms-fires .fire-row--warn {
+  border-left: 3px solid var(--color-warn);
+}
+
+.firms-fires .fire-row--critical {
+  border-left: 3px solid var(--color-critical);
+}
+
+.firms-fires .fire-row--unknown {
+  border-left: 3px solid var(--color-unknown);
+}
+
+/* Not-configured notice */
+.firms-fires .fire-unconfigured {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  line-height: 1.7;
+}
+
+.firms-fires .fire-unconfigured strong {
+  color: var(--color-text-primary);
+}
+
+.firms-fires .fire-unconfigured code {
+  background: #fef3c7;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: monospace;
+  font-size: 0.85em;
+}
+
+.firms-fires .fire-unconfigured a {
+  color: var(--color-brand-primary);
+  font-weight: 600;
+}
+
+.firms-fires .fire-skeleton {
+  padding: var(--space-sm) 0;
+}
+
+.firms-fires .fire-empty {
+  color: var(--color-text-muted);
+  padding: var(--space-md) 0;
+}
+
+.firms-fires .stale-warning {
+  color: var(--color-warn);
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--space-sm);
+}
+
