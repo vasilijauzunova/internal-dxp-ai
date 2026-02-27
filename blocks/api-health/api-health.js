@@ -11,7 +11,7 @@
  * APIs checked
  *   1. USGS Earthquake Feed   https://earthquake.usgs.gov/…/all_day.geojson
  *   2. NASA EONET Events      https://eonet.gsfc.nasa.gov/api/v3/events?status=open&limit=1
- *   3. NASA FIRMS Proxy       /api/firms   (Cloudflare Pages Function)
+ *   3. Open-Meteo Weather     https://api.open-meteo.com/v1/forecast
  */
 
 /* ── API registry ─────────────────────────────────────────────────────────── */
@@ -33,12 +33,12 @@ const APIS = [
     validate: (d) => Array.isArray(d?.events),
   },
   {
-    id: 'firms',
-    name: 'NASA FIRMS Fire Hotspots',
+    id: 'openmeteo',
+    name: 'Open-Meteo Weather API',
     type: 'External',
-    url: '/api/firms',
+    url: 'https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current_weather=true',
     parse: 'json',
-    validate: (d) => Array.isArray(d) || (d && typeof d.error === 'string'),
+    validate: (d) => d?.current_weather != null,
   },
 ];
 
@@ -84,17 +84,6 @@ async function probeApi(api) {
       };
     }
 
-    // FIRMS proxy returns { error } when key is missing
-    if (api.id === 'firms' && data && !Array.isArray(data) && data.error) {
-      return {
-        id: api.id,
-        status: S_WARN,
-        statusCode: res.status,
-        latencyMs,
-        checkedAt,
-        message: data.error,
-      };
-    }
 
     if (api.validate && !api.validate(data)) {
       return {
