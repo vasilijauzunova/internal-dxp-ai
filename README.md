@@ -1,10 +1,6 @@
 # Service Status Dashboard
 
 > A real-time service health monitoring dashboard built on **Adobe AEM Edge Delivery Services** (EDS).
-
-**Team:** Skopje — DXP AI Hackathon 2026 · Valtech  
-**Platform:** AEM EDS · Cloudflare Pages Functions · Vanilla ES Modules
-
 ---
 
 ## Overview
